@@ -7,7 +7,7 @@ require "bundler/capistrano"
 # RVM integration
 require "rvm/capistrano"
 set :rvm_ruby_string, 'ruby-1.9.3-p327' 
-set :rvm_bin_path, "/home/ec2-user/.rvm/bin
+set :rvm_bin_path, "/home/ec2-user/.rvm/bin"
 $:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
 default_run_options[:pty] = true
 # System-wide RVM installation

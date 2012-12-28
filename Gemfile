@@ -7,6 +7,7 @@ gem 'i18n', '~> 0.6.1'
 
 #gem 'sqlite3'
 gem 'mysql2'
+gem 'rvm-capistrano', '1.3.0.rc1'
 
 # Gems used only for assets and not required
 # in production environments by default.
