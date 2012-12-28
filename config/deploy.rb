@@ -1,4 +1,30 @@
-set :application, "magicdelivery"
+# Automatically precompile assets
+load "deploy/assets"
+ 
+# Execute "bundle install" after deploy, but only when really needed
+require "bundler/capistrano"
+ 
+# RVM integration
+require "rvm/capistrano"
+set :rvm_ruby_string, 'ruby-1.9.3-p327' 
+set :rvm_bin_path, "/home/ec2-user/.rvm/bin
+$:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
+default_run_options[:pty] = true
+# System-wide RVM installation
+set :rvm_type, :system
+# We use sudo (root) for system-wide RVM installation
+set :rvm_install_with_sudo, true
+set :rvm_install_pkgs, %w[libyaml openssl]
+set :rvm_install_ruby_params, '--with-opt-dir=~/.rvm/usr'  # or for system installs:
+# set :rvm_install_ruby_params, '--with-opt-dir=/usr/local/rvm/usr'
+set :rvm_install_ruby, :install
+before 'deploy:setup', 'rvm:install_pkgs'
+before 'deploy:setup', 'rvm:install_ruby'
+before 'deploy:setup', 'rvm:install_rvm'
+before 'deploy', 'rvm:install_rvm'
+
+# set :rvm_install_shell, :zsh
+set :application, 'magicdelivery'
 ssh_options[:keys] = ["#{ENV['HOME']}/.ssh/freeinstanceTrip.pem"]
 #ssh_options[:forward_agent] = true
 set :use_sudo, false
