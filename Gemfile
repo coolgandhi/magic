@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 gem 'i18n', '~> 0.6.1'
+gem 'libv8','~> 3.11.8'
+gem 'therubyracer', '~> 0.11.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
