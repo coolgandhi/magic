@@ -23,7 +23,8 @@ test:
 
 production:
   adapter: mysql2
-  timeout: 5000
+  encoding: utf8
+  database: test-mysql2_production
   timeout: 5000
   username: root
   password: QAZwsx987
