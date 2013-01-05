@@ -7,7 +7,8 @@ require "bundler/capistrano"
 # RVM integration
 require "rvm/capistrano"
 set :rvm_ruby_string, 'ruby-1.9.3-p327' 
-set :rvm_bin_path, "/home/ec2-user/.rvm/bin"
+#set :rvm_bin_path, "/home/ec2-user/.rvm/bin"
+set :rvm_bin_path, "/home/vagrant/.rvm/bin"
 $:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
 default_run_options[:pty] = true
 # System-wide RVM installation
@@ -31,19 +32,23 @@ set :use_sudo, false
 
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
-
-set :repository, "git@github.com:coolgandhi/magic.git"
+#set :repository, "git@github.com:coolgandhi/magic.git"
+set :repository, "https://github.com/coolgandhi/magic.git"
 set :deploy_to, "/var/www/magicdelivery"
 #set :deploy_subdir, "magicdelivery"
 set :deploy_via, :copy
 set :git_shallow_clone, 1
 set :branch, "master"
-set :user, "ec2-user"
+#set :user, "ec2-user"
+set :user, "vagrant"
+set :password, "vagrant"
 set :scm_username, "coolgandhi"
 set :scm_command, "/usr/local/git/bin/git"
 set :local_scm_command, "git" 
 
-set :location, "ec2-50-112-211-203.us-west-2.compute.amazonaws.com"
+#set :location, "ec2-50-112-211-203.us-west-2.compute.amazonaws.com"
+set :location, "192.168.33.10"
+#set :location, "192.168.0.100"
 role :web, location                       # Your HTTP server, Apache/etc
 role :app, location                          # This may be the same as your `Web` server
 role :db,  location, :primary => true # This is where Rails migrations will run
